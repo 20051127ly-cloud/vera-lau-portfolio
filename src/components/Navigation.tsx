@@ -4,20 +4,22 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_ITEMS = [
-  { id: 'about', label: '关于我' },
-  { id: 'experience', label: '经历' },
-  { id: 'publications', label: '学术作品' },
-  { id: 'social', label: '社交' },
+  { id: 'profile', label: '关于', emoji: '👋' },
+  { id: 'experience', label: '经历', emoji: '💼' },
+  { id: 'campus', label: '校园', emoji: '🎓' },
+  { id: 'awards', label: '荣誉', emoji: '🏆' },
+  { id: 'skills', label: '技能', emoji: '⚡' },
+  { id: 'social', label: '联系', emoji: '📬' },
 ];
 
 export default function Navigation() {
-  const [activeSection, setActiveSection] = useState('about');
+  const [activeSection, setActiveSection] = useState('profile');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 60);
 
       const sections = NAV_ITEMS.map((item) => ({
         id: item.id,
@@ -28,7 +30,7 @@ export default function Navigation() {
         const section = sections[i];
         if (section.element) {
           const rect = section.element.getBoundingClientRect();
-          if (rect.top <= 150) {
+          if (rect.top <= 120) {
             setActiveSection(section.id);
             break;
           }
@@ -50,12 +52,12 @@ export default function Navigation() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      initial={{ y: -80 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-background/80 backdrop-blur-md shadow-sm border-b border-border'
+          ? 'bg-background/90 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] border-b border-border/50'
           : 'bg-transparent'
       }`}
     >
@@ -64,60 +66,65 @@ export default function Navigation() {
           {/* Logo */}
           <motion.button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2 group"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="flex items-center gap-2.5 group bounce-click"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
-            <div className="w-8 h-8 rounded-sm bg-bvb-yellow flex items-center justify-center">
-              <span className="text-bvb-black font-bold text-sm">P</span>
+            <div className="w-9 h-9 rounded-xl bg-bvb-yellow flex items-center justify-center shadow-sm shadow-bvb-yellow/30">
+              <span className="text-bvb-black font-bold text-sm">C</span>
             </div>
-            <span className="font-serif font-bold text-lg text-foreground group-hover:text-nature-green transition-colors">
-              Portfolio
-            </span>
+            <div className="hidden sm:block">
+              <span className="font-serif font-bold text-foreground group-hover:text-nature-green transition-colors">陈思琪</span>
+              <span className="text-xs text-muted-foreground ml-2">Portfolio</span>
+            </div>
           </motion.button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
-                  activeSection === item.id
-                    ? 'text-bvb-black'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute inset-0 bg-bvb-yellow rounded-md"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{item.label}</span>
-              </button>
-            ))}
+          {/* Desktop Navigation — pill style */}
+          <div className="hidden md:flex items-center gap-1.5 bg-card/60 backdrop-blur-sm rounded-2xl px-2 py-1.5 border border-border/40">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-colors duration-200 bounce-click ${
+                    isActive
+                      ? 'text-bvb-black'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="navPill"
+                      className="absolute inset-0 bg-bvb-yellow rounded-xl"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10 text-sm">{item.emoji}</span>
+                  <span className="relative z-10">{item.label}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-md hover:bg-muted transition-colors"
+            className="md:hidden p-2.5 rounded-xl hover:bg-muted transition-colors bounce-click"
             aria-label="Toggle menu"
           >
-            <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
+            <div className="w-5 h-5 flex flex-col justify-center items-center gap-1.5">
               <motion.span
-                animate={isMobileMenuOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
-                className="w-5 h-0.5 bg-foreground block transition-colors"
+                animate={isMobileMenuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+                className="w-5 h-[2px] bg-foreground block rounded-full"
               />
               <motion.span
-                animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="w-5 h-0.5 bg-foreground block transition-colors"
+                animate={isMobileMenuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                className="w-5 h-[2px] bg-foreground block rounded-full"
               />
               <motion.span
-                animate={isMobileMenuOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
-                className="w-5 h-0.5 bg-foreground block transition-colors"
+                animate={isMobileMenuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                className="w-5 h-[2px] bg-foreground block rounded-full"
               />
             </div>
           </button>
@@ -131,20 +138,21 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-background/95 backdrop-blur-md border-b border-border overflow-hidden"
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50 overflow-hidden"
           >
-            <div className="px-4 py-3 space-y-1">
+            <div className="px-4 py-3 grid grid-cols-3 gap-2">
               {NAV_ITEMS.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`w-full text-left px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                  className={`flex flex-col items-center gap-1 p-3 rounded-xl text-xs font-medium transition-all bounce-click ${
                     activeSection === item.id
                       ? 'bg-bvb-yellow text-bvb-black'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      : 'text-muted-foreground hover:bg-muted'
                   }`}
                 >
+                  <span className="text-lg">{item.emoji}</span>
                   {item.label}
                 </button>
               ))}

@@ -1,8 +1,9 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
-import AboutSection from '@/components/AboutSection';
 import ExperienceSection from '@/components/ExperienceSection';
-import PublicationsSection from '@/components/PublicationsSection';
+import CampusSection from '@/components/CampusSection';
+import AwardsSection from '@/components/AwardsSection';
+import SkillsSection from '@/components/SkillsSection';
 import SocialSection from '@/components/SocialSection';
 import Footer from '@/components/Footer';
 
@@ -12,9 +13,10 @@ export default function Home() {
       <Navigation />
       <main>
         <HeroSection />
-        <AboutSection />
         <ExperienceSection />
-        <PublicationsSection />
+        <CampusSection />
+        <AwardsSection />
+        <SkillsSection />
         <SocialSection />
       </main>
       <Footer />

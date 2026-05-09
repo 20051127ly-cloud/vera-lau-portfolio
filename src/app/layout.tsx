@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: '个人主页 | Portfolio',
-  description: '清新自然风格的个人主页，灵感源自多特蒙德球场',
+  title: '陈思琪 | Portfolio',
+  description: '内容策划 · 品牌传播 · 文化运营 — 个人简历主页',
 };
 
 export default function RootLayout({

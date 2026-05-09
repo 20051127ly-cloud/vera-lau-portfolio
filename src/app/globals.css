@@ -67,7 +67,7 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --background: #FAFAF5;
   --foreground: #1A1A1A;
   --card: #FFFFFF;
@@ -156,97 +156,78 @@ html {
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #A8C5A0;
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #4A7C59;
 }
 
-/* Dortmund stripe pattern */
+/* Module card base — the core Dribbble-style building block */
+.mod-card {
+  border-radius: 1.25rem;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.mod-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(253,225,0,0.08), transparent 60%);
+  pointer-events: none;
+}
+.mod-card:hover::before {
+  opacity: 1;
+}
+.mod-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -8px rgba(253,225,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Dortmund diagonal stripe pattern */
 .dortmund-stripe {
   background: repeating-linear-gradient(
     -45deg,
     transparent,
     transparent 10px,
-    rgba(253, 225, 0, 0.06) 10px,
-    rgba(253, 225, 0, 0.06) 20px
+    rgba(253, 225, 0, 0.04) 10px,
+    rgba(253, 225, 0, 0.04) 20px
   );
 }
 
-/* Grass texture gradient */
-.grass-gradient {
-  background: linear-gradient(
-    180deg,
-    #4A7C59 0%,
-    #6B9B7D 30%,
-    #A8C5A0 60%,
-    #E8E0D0 100%
-  );
+/* Pill tag style */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.pill:hover {
+  transform: scale(1.05);
 }
 
-/* Animated underline */
-.animated-underline {
-  position: relative;
-}
-
-.animated-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #FDE100;
-  transition: width 0.3s ease;
-}
-
-.animated-underline:hover::after {
-  width: 100%;
-}
-
-/* Yellow glow effect */
-.yellow-glow {
-  box-shadow: 0 0 20px rgba(253, 225, 0, 0.15);
-}
-
-.yellow-glow:hover {
-  box-shadow: 0 0 30px rgba(253, 225, 0, 0.25);
-}
-
-/* Nature card hover */
-.nature-card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid transparent;
-}
-
-.nature-card:hover {
-  border-color: #FDE100;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(253, 225, 0, 0.1);
-}
-
-/* Section fade-in animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+/* Icon badge */
+.icon-badge {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
 }
 
 /* Horizontal scroll container */
@@ -254,16 +235,48 @@ html {
   scrollbar-width: thin;
   scrollbar-color: #A8C5A0 transparent;
 }
-
 .horizontal-scroll::-webkit-scrollbar {
   height: 4px;
 }
-
 .horizontal-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
-
 .horizontal-scroll::-webkit-scrollbar-thumb {
   background: #A8C5A0;
   border-radius: 2px;
+}
+
+/* Animated expand/collapse */
+.expand-content {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+}
+
+/* Bounce on click */
+@keyframes bounce-click {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+.bounce-click:active {
+  animation: bounce-click 0.2s ease;
+}
+
+/* Yellow glow pulse */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(253,225,0,0.3); }
+  50% { box-shadow: 0 0 20px 4px rgba(253,225,0,0.15); }
+}
+.glow-pulse {
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+/* Stagger animation helper */
+.stagger > * {
+  opacity: 0;
+  animation: stagger-in 0.5s ease forwards;
+}
+@keyframes stagger-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
