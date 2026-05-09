@@ -27,7 +27,7 @@ export default function HeroSection() {
         <motion.div
           animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.18, 0.1] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-          className="absolute bottom-20 -left-20 w-64 h-64 rounded-full bg-morandi-sage/12 blur-3xl"
+          className="absolute bottom-20 -left-20 w-64 h-64 rounded-full bg-morandi-accent/12 blur-3xl"
         />
       </div>
 
@@ -40,12 +40,12 @@ export default function HeroSection() {
                 <Image src="/avatar.jpeg" alt="Vera LAU" width={144} height={144} className="w-full h-full object-cover" priority />
               </div>
               <h1 className="font-serif text-2xl font-bold text-foreground">Vera LAU</h1>
-              <p className="text-sm text-morandi-sage font-medium mt-1">中山大学 · 博雅学院</p>
+              <p className="text-sm text-morandi-accent font-medium mt-1">中山大学 · 博雅学院</p>
               <div className="flex flex-wrap justify-center gap-2 mt-4">
                 <span className="pill bg-morandi-rose/15 text-morandi-rose border border-morandi-rose/25">
                   <MapPin className="w-3 h-3" /> 广州
                 </span>
-                <span className="pill bg-morandi-sage/12 text-morandi-sage border border-morandi-sage/25">
+                <span className="pill bg-morandi-accent/12 text-morandi-accent border border-morandi-accent/25">
                   <School className="w-3 h-3" /> 2023级
                 </span>
               </div>
@@ -81,7 +81,7 @@ export default function HeroSection() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
                 { value: '4.15', label: 'GPA / 5.00', color: 'bg-morandi-rose/12 text-morandi-rose border-morandi-rose/25' },
-                { value: '2/14', label: '专业排名', color: 'bg-morandi-sage/12 text-morandi-sage border-morandi-sage/25' },
+                { value: '2/14', label: '专业排名', color: 'bg-morandi-accent/12 text-morandi-accent border-morandi-accent/25' },
                 { value: '90+', label: '推文产出', color: 'bg-morandi-blue/12 text-morandi-blue border-morandi-blue/25' },
                 { value: '3', label: '段实习经历', color: 'bg-morandi-sand/20 text-morandi-warm border-morandi-sand/30' },
               ].map((stat) => (
@@ -97,7 +97,7 @@ export default function HeroSection() {
           <motion.div variants={item} className="lg:col-span-4 lg:row-span-2">
             <div className="mod-card bg-card border border-border/50 p-5 h-full">
               <div className="flex items-center gap-2 mb-4">
-                <div className="icon-badge bg-morandi-sage/12"><span className="text-lg">🌐</span></div>
+                <div className="icon-badge bg-morandi-accent/12"><span className="text-lg">🌐</span></div>
                 <h3 className="font-semibold text-sm">语言能力</h3>
               </div>
               <div className="space-y-3">
@@ -117,7 +117,7 @@ export default function HeroSection() {
                         whileInView={{ width: `${l.pct}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-                        className="h-full rounded-full bg-gradient-to-r from-morandi-sage to-morandi-rose"
+                        className="h-full rounded-full bg-gradient-to-r from-morandi-accent to-morandi-rose"
                       />
                     </div>
                   </div>
@@ -153,7 +153,7 @@ export default function HeroSection() {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {['内容策划', '社交媒体运营', '品牌传播', '学术研究', '古典学', '跨文化传播'].map((skill) => (
                   <motion.div key={skill} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className="pill bg-morandi-sage/8 text-morandi-sage border border-morandi-sage/15 cursor-default justify-center py-2">
+                    className="pill bg-morandi-accent/8 text-morandi-accent border border-morandi-accent/15 cursor-default justify-center py-2">
                     {skill}
                   </motion.div>
                 ))}

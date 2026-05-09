@@ -12,9 +12,9 @@ interface AwardItem {
 const SCHOLARSHIP_AWARDS: AwardItem[] = [
   { icon: <Award className="w-3.5 h-3.5" />, text: '2023-2024学年中山大学优秀学生奖学金（三等奖）', color: 'bg-morandi-rose/10 text-morandi-rose border-morandi-rose/20' },
   { icon: <Award className="w-3.5 h-3.5" />, text: '2024-2025学年中山大学优秀学生奖学金（三等奖）', color: 'bg-morandi-rose/10 text-morandi-rose border-morandi-rose/20' },
-  { icon: <Star className="w-3.5 h-3.5" />, text: '2023-2024学年中山大学专项奖学金笃行骨干奖', color: 'bg-morandi-sage/10 text-morandi-sage border-morandi-sage/20' },
-  { icon: <Star className="w-3.5 h-3.5" />, text: '2025年中山大学优秀学生社团骨干', color: 'bg-morandi-sage/10 text-morandi-sage border-morandi-sage/20' },
-  { icon: <Star className="w-3.5 h-3.5" />, text: '2024年中山大学勤工助学先进个人', color: 'bg-morandi-sage/10 text-morandi-sage border-morandi-sage/20' },
+  { icon: <Star className="w-3.5 h-3.5" />, text: '2023-2024学年中山大学专项奖学金笃行骨干奖', color: 'bg-morandi-accent/10 text-morandi-accent border-morandi-accent/20' },
+  { icon: <Star className="w-3.5 h-3.5" />, text: '2025年中山大学优秀学生社团骨干', color: 'bg-morandi-accent/10 text-morandi-accent border-morandi-accent/20' },
+  { icon: <Star className="w-3.5 h-3.5" />, text: '2024年中山大学勤工助学先进个人', color: 'bg-morandi-accent/10 text-morandi-accent border-morandi-accent/20' },
 ];
 
 const ACADEMIC_AWARDS: AwardItem[] = [
@@ -23,7 +23,7 @@ const ACADEMIC_AWARDS: AwardItem[] = [
 ];
 
 const LANGUAGE_SCORES = [
-  { label: 'CET-4', score: '614', color: 'from-morandi-sage to-morandi-rose' },
+  { label: 'CET-4', score: '614', color: 'from-morandi-accent to-morandi-rose' },
   { label: 'CET-6', score: '605', color: 'from-morandi-rose to-morandi-lavender' },
 ];
 
@@ -109,7 +109,7 @@ export default function AwardsSection() {
             {/* English Scores */}
             <div className="mod-card bg-card border border-border/50 p-5">
               <div className="flex items-center gap-2 mb-4">
-                <div className="icon-badge bg-morandi-sage/12"><Languages className="w-4 h-4 text-morandi-sage" /></div>
+                <div className="icon-badge bg-morandi-accent/12"><Languages className="w-4 h-4 text-morandi-accent" /></div>
                 <h3 className="font-semibold text-sm">英语成绩</h3>
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -123,7 +123,7 @@ export default function AwardsSection() {
                 ))}
               </div>
               <div className="mt-3 flex flex-wrap gap-1.5">
-                <span className="pill bg-morandi-sage/8 text-morandi-sage border border-morandi-sage/15">普通话（二甲）</span>
+                <span className="pill bg-morandi-accent/8 text-morandi-accent border border-morandi-accent/15">普通话（二甲）</span>
                 <span className="pill bg-morandi-rose/8 text-morandi-rose border border-morandi-rose/15">粤语（母语）</span>
               </div>
             </div>

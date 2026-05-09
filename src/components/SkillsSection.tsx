@@ -20,7 +20,7 @@ const SKILL_GROUPS: SkillGroup[] = [
   {
     icon: <Code className="w-4 h-4" />,
     title: '技术工具',
-    color: 'border-t-2 border-t-morandi-sage',
+    color: 'border-t-2 border-t-morandi-accent',
     skills: ['Python', 'SQL', 'ChatGPT / Deepseek'],
   },
   {
@@ -81,7 +81,7 @@ export default function SkillsSection() {
                       whileHover={{ x: 6, backgroundColor: 'rgba(var(--morandi-cream-rgb), 0.5)' }}
                       className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/30 text-xs cursor-default transition-colors"
                     >
-                      <span className="w-1 h-1 rounded-full bg-morandi-sage shrink-0" />
+                      <span className="w-1 h-1 rounded-full bg-morandi-accent shrink-0" />
                       {skill}
                     </motion.div>
                   ))}

@@ -68,7 +68,7 @@ export default function Navigation() {
               <span className="text-white font-bold text-sm">V</span>
             </div>
             <div className="hidden sm:block">
-              <span className="font-serif font-bold text-foreground group-hover:text-morandi-sage transition-colors">Vera LAU</span>
+              <span className="font-serif font-bold text-foreground group-hover:text-morandi-accent transition-colors">Vera LAU</span>
               <span className="text-xs text-muted-foreground ml-2">Portfolio</span>
             </div>
           </motion.button>

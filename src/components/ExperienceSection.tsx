@@ -32,7 +32,7 @@ const EXPERIENCES: ExpItem[] = [
     title: '活动策划岗实习生',
     org: '广州少年儿童图书馆',
     period: '2025.01 - 2025.03',
-    color: 'border-l-4 border-l-morandi-sage',
+    color: 'border-l-4 border-l-morandi-accent',
     tags: ['文化IP策划', '内容分发', '活动运营'],
     bullets: [
       '传统文化IP化内容策划：挖掘元宵节、植树节节点流量，创新策划"绘本+汉服+非遗游戏"沉浸式阅读体验，将静态书展升级为可参与的文化场景，单场活动家庭参与率超50组。策划图书馆夹层节日专题图书展览，实现从"图书借阅"到"文化体验"的用户价值升级。',
@@ -77,8 +77,8 @@ export default function ExperienceSection() {
           className="mb-10"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="icon-badge bg-morandi-sage/15">
-              <Briefcase className="w-4 h-4 text-morandi-sage" />
+            <div className="icon-badge bg-morandi-accent/15">
+              <Briefcase className="w-4 h-4 text-morandi-accent" />
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold">实习经历</h2>
           </div>
@@ -100,14 +100,14 @@ export default function ExperienceSection() {
                   className={`w-full text-left mod-card bg-card border border-border/50 p-5 sm:p-6 cursor-pointer ${exp.color} bounce-click`}
                 >
                   <div className="flex items-start gap-3">
-                    <div className="icon-badge bg-morandi-sage/8 text-morandi-sage shrink-0">
+                    <div className="icon-badge bg-morandi-accent/8 text-morandi-accent shrink-0">
                       <Briefcase className="w-4 h-4" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <h3 className="font-semibold text-sm sm:text-base text-foreground">{exp.title}</h3>
-                          <p className="text-xs text-morandi-sage font-medium mt-0.5">{exp.org}</p>
+                          <p className="text-xs text-morandi-accent font-medium mt-0.5">{exp.org}</p>
                         </div>
                         <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.25 }}>
                           <ChevronDown className="w-5 h-5 text-muted-foreground shrink-0" />
@@ -121,7 +121,7 @@ export default function ExperienceSection() {
 
                   <div className="flex flex-wrap gap-1.5 mt-3 ml-[3.25rem]">
                     {exp.tags.map((tag) => (
-                      <span key={tag} className="pill bg-morandi-sage/8 text-morandi-sage border border-morandi-sage/15 text-[0.65rem] py-0.5 px-2">
+                      <span key={tag} className="pill bg-morandi-accent/8 text-morandi-accent border border-morandi-accent/15 text-[0.65rem] py-0.5 px-2">
                         {tag}
                       </span>
                     ))}
@@ -139,7 +139,7 @@ export default function ExperienceSection() {
                         <div className="pt-4 mt-3 ml-[3.25rem] border-t border-border/50 space-y-2.5">
                           {exp.bullets.map((bullet, i) => (
                             <div key={i} className="flex gap-2 text-xs text-muted-foreground leading-relaxed">
-                              <span className="text-morandi-sage mt-0.5 shrink-0">●</span>
+                              <span className="text-morandi-accent mt-0.5 shrink-0">●</span>
                               <span>{bullet}</span>
                             </div>
                           ))}

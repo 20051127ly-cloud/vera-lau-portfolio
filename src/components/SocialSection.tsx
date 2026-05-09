@@ -14,7 +14,7 @@ interface SocialItem {
 
 const SOCIALS: SocialItem[] = [
   { name: '小红书', icon: <BookOpen className="w-5 h-5" />, color: 'bg-red-50 text-red-400 border-red-100', hoverColor: 'hover:bg-red-500 hover:text-white hover:border-red-500', description: '英剧内容运营', url: '#' },
-  { name: '公众号', icon: <MessageCircle className="w-5 h-5" />, color: 'bg-green-50 text-green-500 border-green-100', hoverColor: 'hover:bg-green-500 hover:text-white hover:border-green-500', description: '博雅学院新闻中心', url: '#' },
+  { name: '公众号', icon: <MessageCircle className="w-5 h-5" />, color: 'bg-morandi-accent-light text-morandi-accent border-morandi-accent/20', hoverColor: 'hover:bg-morandi-accent hover:text-white hover:border-morandi-accent', description: '博雅学院新闻中心', url: '#' },
   { name: '知乎', icon: <PenLine className="w-5 h-5" />, color: 'bg-blue-50 text-blue-500 border-blue-100', hoverColor: 'hover:bg-blue-600 hover:text-white hover:border-blue-600', description: '学术与人文', url: '#' },
   { name: 'GitHub', icon: <Github className="w-5 h-5" />, color: 'bg-gray-50 text-gray-600 border-gray-200', hoverColor: 'hover:bg-gray-800 hover:text-white hover:border-gray-800', description: '代码 & 项目', url: '#' },
   { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, color: 'bg-sky-50 text-sky-500 border-sky-100', hoverColor: 'hover:bg-sky-600 hover:text-white hover:border-sky-600', description: '职业网络', url: '#' },

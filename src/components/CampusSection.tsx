@@ -44,7 +44,7 @@ const CAMPUS_ITEMS: CampusItem[] = [
     org: '中山大学博雅学院新闻中心',
     period: '2024.09 - 2025.09',
     icon: <PenTool className="w-4 h-4" />,
-    color: 'border-l-4 border-l-morandi-sage',
+    color: 'border-l-4 border-l-morandi-accent',
     tags: ['内容运营', 'SOP优化', '新闻通稿'],
     bullets: [
       '负责学院公众号及官网栏目规划，基于用户阅读数据优化导航结构与推送策略，建立"博雅教育-博雅学术-博雅人物"内容体系，优化推送工作SOP。任职期间累计产出推文90+篇，总阅读量23000+。',
@@ -162,7 +162,7 @@ export default function CampusSection() {
                             <div className="flex items-start justify-between gap-2">
                               <div>
                                 <h3 className="font-semibold text-sm sm:text-base text-foreground">{exp.title}</h3>
-                                <p className="text-xs text-morandi-sage font-medium mt-0.5">{exp.org}</p>
+                                <p className="text-xs text-morandi-accent font-medium mt-0.5">{exp.org}</p>
                               </div>
                               <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.25 }}>
                                 <ChevronDown className="w-5 h-5 text-muted-foreground shrink-0" />

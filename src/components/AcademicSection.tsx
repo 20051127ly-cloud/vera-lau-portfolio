@@ -35,7 +35,7 @@ const ACADEMIC_ITEMS: AcademicItem[] = [
     org: '大创项目 · 评级：优秀',
     period: '2024.12 - 2025.12',
     icon: <FlaskConical className="w-4 h-4" />,
-    color: 'border-l-4 border-l-morandi-sage',
+    color: 'border-l-4 border-l-morandi-accent',
     tags: ['大创项目', '拉丁文翻译', '人文主义'],
     bullets: [
       '梳理彼特拉克对贺拉斯等古典文人生命观的接受，分析其在《谴责无德无才的高官》中折射出的彷徨与自我焦虑，进一步分析"谴责"文体对彼特拉克人文主义自我意识觉醒的影响。（成果为译本前言）',
@@ -130,19 +130,19 @@ export default function AcademicSection() {
               {/* Core Courses */}
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-3">
-                  <BookOpen className="w-4 h-4 text-morandi-sage" />
+                  <BookOpen className="w-4 h-4 text-morandi-accent" />
                   <span className="text-sm font-medium">核心课程</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {(showAllCourses ? CORE_COURSES : CORE_COURSES.slice(0, 5)).map((course) => (
-                    <span key={course} className="pill bg-morandi-sage/8 text-morandi-sage border border-morandi-sage/15 text-[0.65rem] py-0.5 px-2">
+                    <span key={course} className="pill bg-morandi-accent/8 text-morandi-accent border border-morandi-accent/15 text-[0.65rem] py-0.5 px-2">
                       {course}
                     </span>
                   ))}
                   {!showAllCourses && CORE_COURSES.length > 5 && (
                     <button
                       onClick={() => setShowAllCourses(true)}
-                      className="pill bg-muted text-muted-foreground border border-border/50 text-[0.65rem] py-0.5 px-2 cursor-pointer hover:bg-morandi-sage/10"
+                      className="pill bg-muted text-muted-foreground border border-border/50 text-[0.65rem] py-0.5 px-2 cursor-pointer hover:bg-morandi-accent/10"
                     >
                       +{CORE_COURSES.length - 5} 更多
                     </button>
@@ -185,7 +185,7 @@ export default function AcademicSection() {
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <h3 className="font-semibold text-sm sm:text-base text-foreground leading-snug">{exp.title}</h3>
-                          <p className="text-xs text-morandi-sage font-medium mt-0.5">{exp.org}</p>
+                          <p className="text-xs text-morandi-accent font-medium mt-0.5">{exp.org}</p>
                         </div>
                         <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.25 }}>
                           <ChevronDown className="w-5 h-5 text-muted-foreground shrink-0" />
@@ -199,7 +199,7 @@ export default function AcademicSection() {
 
                   <div className="flex flex-wrap gap-1.5 mt-3 ml-[3.25rem]">
                     {exp.tags.map((tag) => (
-                      <span key={tag} className="pill bg-morandi-sage/8 text-morandi-sage border border-morandi-sage/15 text-[0.65rem] py-0.5 px-2">
+                      <span key={tag} className="pill bg-morandi-accent/8 text-morandi-accent border border-morandi-accent/15 text-[0.65rem] py-0.5 px-2">
                         {tag}
                       </span>
                     ))}

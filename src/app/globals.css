@@ -48,6 +48,8 @@
   --color-morandi-rose-light: #E3D5D5;
   --color-morandi-sage: #9CAF96;
   --color-morandi-sage-light: #D5DFD2;
+  --color-morandi-accent: #9B7E5E;
+  --color-morandi-accent-light: #EDE0CC;
   --color-morandi-blue: #A3B5C7;
   --color-morandi-blue-light: #D5DEE8;
   --color-morandi-sand: #CFC3B7;
@@ -89,12 +91,12 @@
   --secondary-foreground: #4A4340;
   --muted: #EDE7E0;
   --muted-foreground: #8A8279;
-  --accent: #9CAF96;
+  --accent: #9B7E5E;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #DDD5CC;
   --input: #DDD5CC;
-  --ring: #9CAF96;
+  --ring: #9B7E5E;
   --chart-1: #C4A6A6;
   --chart-2: #9CAF96;
   --chart-3: #A3B5C7;
@@ -123,12 +125,12 @@
   --secondary-foreground: #EDE7E0;
   --muted: #4A443E;
   --muted-foreground: #9A938B;
-  --accent: #9CAF96;
+  --accent: #9B7E5E;
   --accent-foreground: #2C2825;
   --destructive: oklch(0.704 0.191 22.216);
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.12);
-  --ring: #9CAF96;
+  --ring: #9B7E5E;
   --chart-1: #C4A6A6;
   --chart-2: #9CAF96;
   --chart-3: #A3B5C7;
