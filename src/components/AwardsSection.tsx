@@ -18,7 +18,7 @@ const SCHOLARSHIP_AWARDS: AwardItem[] = [
 ];
 
 const ACADEMIC_AWARDS: AwardItem[] = [
-  { icon: <BookOpen className="w-3.5 h-3.5" />, text: '南京大学文学院520本硕博联动本科生学术论文报告会获奖', color: 'bg-morandi-blue/10 text-morandi-blue border-morandi-blue/20' },
+  { icon: <BookOpen className="w-3.5 h-3.5" />, text: '南京大学文学院520本硕博联动本科生学术论文报告会获奖（《她与共和：论普鲁塔克对波西娅的形象塑造》）', color: 'bg-morandi-blue/10 text-morandi-blue border-morandi-blue/20' },
   { icon: <BookOpen className="w-3.5 h-3.5" />, text: '第四届社科法学书评、影评与翻译大赛获奖（《"永恒的挑衅"：论福柯的权力与战争》）', color: 'bg-morandi-blue/10 text-morandi-blue border-morandi-blue/20' },
 ];
 

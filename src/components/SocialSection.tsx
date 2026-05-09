@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, ExternalLink, Github, BookOpen, MessageCircle, PenLine, Linkedin, FileText } from 'lucide-react';
+import { Mail, ExternalLink, BookOpen, MessageCircle } from 'lucide-react';
 
 interface SocialItem {
   name: string;
@@ -13,12 +13,8 @@ interface SocialItem {
 }
 
 const SOCIALS: SocialItem[] = [
-  { name: '小红书', icon: <BookOpen className="w-5 h-5" />, color: 'bg-red-50 text-red-400 border-red-100', hoverColor: 'hover:bg-red-500 hover:text-white hover:border-red-500', description: '英剧内容运营', url: '#' },
-  { name: '公众号', icon: <MessageCircle className="w-5 h-5" />, color: 'bg-morandi-accent-light text-morandi-accent border-morandi-accent/20', hoverColor: 'hover:bg-morandi-accent hover:text-white hover:border-morandi-accent', description: '博雅学院新闻中心', url: '#' },
-  { name: '知乎', icon: <PenLine className="w-5 h-5" />, color: 'bg-blue-50 text-blue-500 border-blue-100', hoverColor: 'hover:bg-blue-600 hover:text-white hover:border-blue-600', description: '学术与人文', url: '#' },
-  { name: 'GitHub', icon: <Github className="w-5 h-5" />, color: 'bg-gray-50 text-gray-600 border-gray-200', hoverColor: 'hover:bg-gray-800 hover:text-white hover:border-gray-800', description: '代码 & 项目', url: '#' },
-  { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, color: 'bg-sky-50 text-sky-500 border-sky-100', hoverColor: 'hover:bg-sky-600 hover:text-white hover:border-sky-600', description: '职业网络', url: '#' },
-  { name: 'Google Scholar', icon: <FileText className="w-5 h-5" />, color: 'bg-indigo-50 text-indigo-500 border-indigo-100', hoverColor: 'hover:bg-indigo-600 hover:text-white hover:border-indigo-600', description: '学术成果', url: '#' },
+  { name: '小红书', icon: <BookOpen className="w-5 h-5" />, color: 'bg-red-50 text-red-400 border-red-100', hoverColor: 'hover:bg-red-500 hover:text-white hover:border-red-500', description: '英剧内容运营', url: 'https://www.xiaohongshu.com/user/profile/6104a355000000000101c0a7' },
+  { name: '公众号', icon: <MessageCircle className="w-5 h-5" />, color: 'bg-morandi-accent-light text-morandi-accent border-morandi-accent/20', hoverColor: 'hover:bg-morandi-accent hover:text-white hover:border-morandi-accent', description: '中山大学博雅学院', url: 'https://mp.weixin.qq.com' },
 ];
 
 const container = {
@@ -57,7 +53,7 @@ export default function SocialSection() {
           viewport={{ once: true, margin: '-60px' }}
           className="ml-12"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-5">
+          <div className="grid grid-cols-2 gap-4 mb-5 max-w-md">
             {SOCIALS.map((social) => (
               <motion.a
                 key={social.name}
@@ -78,7 +74,7 @@ export default function SocialSection() {
 
           {/* Email CTA */}
           <motion.div variants={item}>
-            <a href="mailto:vera.lau@example.com">
+            <a href="mailto:2419503690@qq.com">
               <motion.div
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
