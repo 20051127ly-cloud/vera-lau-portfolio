@@ -108,6 +108,7 @@ export default function CampusSection() {
               <BookOpen className="w-4 h-4 text-morandi-blue" />
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold">校园 & 项目</h2>
+            <p className="text-xs text-muted-foreground/60 mt-1">点击卡片展开详情</p>
           </div>
           <div className="flex gap-2 ml-12">
             {[

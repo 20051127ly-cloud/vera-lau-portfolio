@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { MapPin, School, Sparkles } from 'lucide-react';
+import { MapPin, School, Sparkles, Phone, Mail } from 'lucide-react';
 
 const container = {
   hidden: { opacity: 0 },
@@ -52,6 +52,15 @@ export default function HeroSection() {
               <p className="text-xs text-muted-foreground mt-4 leading-relaxed max-w-[240px]">
                 汉语言文学（博雅），热爱古典学与人文研究，擅长内容策划与文化传播。
               </p>
+              {/* Contact Info */}
+              <div className="mt-4 space-y-2 w-full">
+                <a href="mailto:2419503690@qq.com" className="flex items-center gap-2 text-xs text-morandi-accent hover:text-morandi-rose transition-colors justify-center">
+                  <Mail className="w-3.5 h-3.5" /> 2419503690@qq.com
+                </a>
+                <a href="tel:13694288875" className="flex items-center gap-2 text-xs text-morandi-accent hover:text-morandi-rose transition-colors justify-center">
+                  <Phone className="w-3.5 h-3.5" /> 13694288875
+                </a>
+              </div>
             </div>
           </motion.div>
 
@@ -103,8 +112,9 @@ export default function HeroSection() {
               <div className="space-y-3">
                 {[
                   { lang: '粤语', level: '母语', pct: 100 },
-                  { lang: '普通话', level: '二甲', pct: 95 },
+                  { lang: '普通话', level: '二甲', pct: 100 },
                   { lang: '英语', level: 'CET-6 605', pct: 85 },
+                  { lang: '拉丁语', level: '可阅读', pct: 55 },
                 ].map((l) => (
                   <div key={l.lang}>
                     <div className="flex justify-between text-xs mb-1">
@@ -159,6 +169,13 @@ export default function HeroSection() {
                 ))}
               </div>
             </div>
+          </motion.div>
+
+          {/* Click Hint */}
+          <motion.div variants={item} className="lg:col-span-12">
+            <p className="text-center text-xs text-muted-foreground/60 mt-2">
+              💡 点击卡片可展开查看详情
+            </p>
           </motion.div>
         </motion.div>
       </div>

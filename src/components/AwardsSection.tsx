@@ -125,6 +125,7 @@ export default function AwardsSection() {
               <div className="mt-3 flex flex-wrap gap-1.5">
                 <span className="pill bg-morandi-accent/8 text-morandi-accent border border-morandi-accent/15">普通话（二甲）</span>
                 <span className="pill bg-morandi-rose/8 text-morandi-rose border border-morandi-rose/15">粤语（母语）</span>
+                <span className="pill bg-morandi-blue/8 text-morandi-blue border border-morandi-blue/15">拉丁语（可阅读）</span>
               </div>
             </div>
           </motion.div>
