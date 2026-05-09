@@ -61,13 +61,7 @@ export default function HeroSection() {
                   <Phone className="w-3.5 h-3.5" /> 13694288875
                 </a>
               </div>
-              {/* Motto */}
-              <div className="mt-5 pt-4 border-t border-border/30 w-full">
-                <p className="text-[10px] text-muted-foreground/60 uppercase tracking-[0.2em] mb-1">Motto</p>
-                <p className="font-serif italic text-sm text-morandi-rose/80 leading-relaxed">
-                  Echte Liebe. <span className="text-morandi-accent/70">True Love.</span>
-                </p>
-              </div>
+
             </div>
           </motion.div>
           <motion.div variants={item} className="lg:col-span-8">
@@ -173,6 +167,17 @@ export default function HeroSection() {
                   </motion.div>
                 ))}
               </div>
+            </div>
+          </motion.div>
+
+          {/* Motto */}
+          <motion.div variants={item} className="lg:col-span-12">
+            <div className="flex items-center justify-center gap-4 py-4">
+              <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-morandi-rose/30" />
+              <p className="font-serif italic text-base text-morandi-rose/80 tracking-wide">
+                Echte Liebe. <span className="text-morandi-accent/70">True Love.</span>
+              </p>
+              <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-morandi-accent/30" />
             </div>
           </motion.div>
 
