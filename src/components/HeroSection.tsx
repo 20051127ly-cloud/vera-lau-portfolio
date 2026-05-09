@@ -153,7 +153,7 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Core Strengths Card */}
-          <motion.div variants={item} className="lg:col-span-8">
+          <motion.div variants={item} className="lg:col-span-7">
             <div className="mod-card bg-card border border-border/50 p-5 h-full">
               <div className="flex items-center gap-2 mb-4">
                 <div className="icon-badge bg-morandi-amber/15"><span className="text-lg">✨</span></div>
@@ -170,14 +170,17 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Motto */}
-          <motion.div variants={item} className="lg:col-span-12">
-            <div className="flex items-center justify-center gap-4 py-4">
-              <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-morandi-rose/30" />
-              <p className="font-serif italic text-base text-morandi-rose/80 tracking-wide">
-                Echte Liebe. <span className="text-morandi-accent/70">True Love.</span>
+          {/* Motto Card - 教育右侧、核心竞争力下方 */}
+          <motion.div variants={item} className="lg:col-span-5">
+            <div className="mod-card bg-gradient-to-br from-morandi-rose/8 via-morandi-accent/6 to-morandi-blue/8 border border-morandi-rose/15 p-5 h-full flex flex-col items-center justify-center text-center">
+              <div className="icon-badge bg-morandi-rose/12 mb-3"><span className="text-lg">💛</span></div>
+              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Motto</p>
+              <p className="font-serif italic text-lg text-morandi-rose leading-relaxed">
+                Echte Liebe.
               </p>
-              <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-morandi-accent/30" />
+              <p className="font-serif italic text-lg text-morandi-accent leading-relaxed">
+                True Love.
+              </p>
             </div>
           </motion.div>
 
