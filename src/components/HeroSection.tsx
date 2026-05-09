@@ -61,10 +61,15 @@ export default function HeroSection() {
                   <Phone className="w-3.5 h-3.5" /> 13694288875
                 </a>
               </div>
+              {/* Motto */}
+              <div className="mt-5 pt-4 border-t border-border/30 w-full">
+                <p className="text-[10px] text-muted-foreground/60 uppercase tracking-[0.2em] mb-1">Motto</p>
+                <p className="font-serif italic text-sm text-morandi-rose/80 leading-relaxed">
+                  Echte Liebe. <span className="text-morandi-accent/70">True Love.</span>
+                </p>
+              </div>
             </div>
           </motion.div>
-
-          {/* Title Card */}
           <motion.div variants={item} className="lg:col-span-8">
             <div className="mod-card bg-morandi-rose border border-morandi-rose/30 p-6 sm:p-8 h-full flex flex-col justify-center">
               <div className="flex items-start justify-between">
