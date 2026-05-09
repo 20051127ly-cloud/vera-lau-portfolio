@@ -43,6 +43,7 @@ export default function SocialSection() {
               <ExternalLink className="w-4 h-4 text-morandi-lavender" />
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold">联系 & 社交</h2>
+            <p className="text-xs text-muted-foreground/60 mt-1">点击卡片展开详情</p>
           </div>
         </motion.div>
 

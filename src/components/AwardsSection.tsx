@@ -53,6 +53,7 @@ export default function AwardsSection() {
               <Trophy className="w-4 h-4 text-morandi-amber" />
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold">奖项荣誉</h2>
+            <p className="text-xs text-muted-foreground/60 mt-1">点击卡片展开详情</p>
           </div>
         </motion.div>
 
