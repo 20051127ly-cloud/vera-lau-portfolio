@@ -1,41 +1,33 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Wrench, Monitor, Palette, Languages } from 'lucide-react';
+import { Wrench, FileSpreadsheet, Code, Palette } from 'lucide-react';
 
 interface SkillGroup {
-  category: string;
   icon: React.ReactNode;
+  title: string;
   color: string;
-  borderColor: string;
-  bgColor: string;
   skills: string[];
 }
 
 const SKILL_GROUPS: SkillGroup[] = [
   {
-    category: '办公工具',
-    icon: <Monitor className="w-4 h-4" />,
-    color: 'text-nature-green',
-    borderColor: 'border-nature-green/20',
-    bgColor: 'bg-nature-green/8',
-    skills: ['Excel (VLOOKUP/透视表)', 'Word', 'PowerPoint'],
+    icon: <FileSpreadsheet className="w-4 h-4" />,
+    title: '办公工具',
+    color: 'border-t-2 border-t-morandi-rose',
+    skills: ['Excel (VLOOKUP、数据透视表)', 'Word', 'PowerPoint'],
   },
   {
-    category: '编程 & 数据',
-    icon: <Wrench className="w-4 h-4" />,
-    color: 'text-bvb-black',
-    borderColor: 'border-bvb-yellow/30',
-    bgColor: 'bg-bvb-yellow/10',
-    skills: ['Python', 'SQL'],
+    icon: <Code className="w-4 h-4" />,
+    title: '技术工具',
+    color: 'border-t-2 border-t-morandi-sage',
+    skills: ['Python', 'SQL', 'ChatGPT / Deepseek'],
   },
   {
-    category: '设计 & 创作',
     icon: <Palette className="w-4 h-4" />,
-    color: 'text-nature-leaf',
-    borderColor: 'border-nature-leaf/25',
-    bgColor: 'bg-nature-sage/15',
-    skills: ['可画 (Canva)', '剪映', '秀米', '135编辑器', '即梦AI'],
+    title: '设计 & 媒体',
+    color: 'border-t-2 border-t-morandi-blue',
+    skills: ['可画', '剪映', '秀米', '135编辑器', '即梦AI'],
   },
 ];
 
@@ -51,9 +43,8 @@ const item = {
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="py-16 sm:py-24 relative bg-nature-warm/20">
+    <section id="skills" className="py-16 sm:py-24 relative bg-morandi-cream-deep/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,10 +53,10 @@ export default function SkillsSection() {
           className="mb-10"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="icon-badge bg-nature-green/15">
-              <Wrench className="w-4 h-4 text-nature-green" />
+            <div className="icon-badge bg-morandi-sand/20">
+              <Wrench className="w-4 h-4 text-morandi-warm" />
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold">技能 & 工具</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold">技能工具</h2>
           </div>
         </motion.div>
 
@@ -73,33 +64,28 @@ export default function SkillsSection() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 ml-12"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-5 ml-12"
         >
           {SKILL_GROUPS.map((group) => (
-            <motion.div
-              key={group.category}
-              variants={item}
-              whileHover={{ y: -4 }}
-              className={`mod-card border ${group.borderColor} bg-card p-5`}
-            >
-              <div className="flex items-center gap-2 mb-4">
-                <div className={`icon-badge ${group.bgColor} ${group.color}`}>
-                  {group.icon}
+            <motion.div key={group.title} variants={item}>
+              <div className={`mod-card bg-card border border-border/50 p-5 h-full ${group.color}`}>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="icon-badge bg-muted/80">{group.icon}</div>
+                  <h3 className="font-semibold text-sm">{group.title}</h3>
                 </div>
-                <h3 className="font-semibold text-sm">{group.category}</h3>
-              </div>
-              <div className="space-y-2">
-                {group.skills.map((skill) => (
-                  <motion.div
-                    key={skill}
-                    whileHover={{ x: 4 }}
-                    whileTap={{ scale: 0.97 }}
-                    className={`pill ${group.bgColor} ${group.color} border ${group.borderColor} cursor-default w-full justify-center py-1.5`}
-                  >
-                    {skill}
-                  </motion.div>
-                ))}
+                <div className="space-y-1.5">
+                  {group.skills.map((skill) => (
+                    <motion.div
+                      key={skill}
+                      whileHover={{ x: 6, backgroundColor: 'rgba(var(--morandi-cream-rgb), 0.5)' }}
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/30 text-xs cursor-default transition-colors"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-morandi-sage shrink-0" />
+                      {skill}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

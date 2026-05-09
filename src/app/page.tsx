@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import AcademicSection from '@/components/AcademicSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import CampusSection from '@/components/CampusSection';
 import AwardsSection from '@/components/AwardsSection';
@@ -9,17 +10,16 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <>
+    <main className="min-h-screen">
       <Navigation />
-      <main>
-        <HeroSection />
-        <ExperienceSection />
-        <CampusSection />
-        <AwardsSection />
-        <SkillsSection />
-        <SocialSection />
-      </main>
+      <HeroSection />
+      <AcademicSection />
+      <ExperienceSection />
+      <CampusSection />
+      <AwardsSection />
+      <SkillsSection />
+      <SocialSection />
       <Footer />
-    </>
+    </main>
   );
 }

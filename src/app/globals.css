@@ -43,16 +43,25 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* Dortmund + Nature palette */
-  --color-bvb-yellow: #FDE100;
-  --color-bvb-black: #0D0D0D;
-  --color-bvb-dark: #1A1A1A;
-  --color-nature-green: #4A7C59;
-  --color-nature-leaf: #6B9B7D;
-  --color-nature-sage: #A8C5A0;
-  --color-nature-cream: #FAFAF5;
-  --color-nature-sand: #E8E0D0;
-  --color-nature-warm: #F5F0E8;
+  /* Morandi Palette — muted, elegant, low-saturation */
+  --color-morandi-rose: #C4A6A6;
+  --color-morandi-rose-light: #E3D5D5;
+  --color-morandi-sage: #9CAF96;
+  --color-morandi-sage-light: #D5DFD2;
+  --color-morandi-blue: #A3B5C7;
+  --color-morandi-blue-light: #D5DEE8;
+  --color-morandi-sand: #CFC3B7;
+  --color-morandi-sand-light: #EDE7E0;
+  --color-morandi-lavender: #B8A9C9;
+  --color-morandi-lavender-light: #DDD5E8;
+  --color-morandi-amber: #D4B896;
+  --color-morandi-amber-light: #EDE0CC;
+  --color-morandi-warm: #B5A69C;
+  --color-morandi-cream: #F5F1ED;
+  --color-morandi-cream-deep: #EDE6DD;
+  --color-morandi-charcoal: #4A4340;
+  --color-morandi-text: #5C5652;
+  --color-morandi-text-light: #8A8279;
 
   --font-sans:
     'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', ui-sans-serif,
@@ -68,71 +77,71 @@
 
 :root {
   --radius: 0.75rem;
-  --background: #FAFAF5;
-  --foreground: #1A1A1A;
-  --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
-  --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
-  --primary: #FDE100;
-  --primary-foreground: #0D0D0D;
-  --secondary: #F0EDE5;
-  --secondary-foreground: #1A1A1A;
-  --muted: #F0EDE5;
-  --muted-foreground: #6B7280;
-  --accent: #4A7C59;
+  --background: #F5F1ED;
+  --foreground: #4A4340;
+  --card: #FDFBF9;
+  --card-foreground: #4A4340;
+  --popover: #FDFBF9;
+  --popover-foreground: #4A4340;
+  --primary: #C4A6A6;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EDE7E0;
+  --secondary-foreground: #4A4340;
+  --muted: #EDE7E0;
+  --muted-foreground: #8A8279;
+  --accent: #9CAF96;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #E5E0D5;
-  --input: #E5E0D5;
-  --ring: #4A7C59;
-  --chart-1: #FDE100;
-  --chart-2: #4A7C59;
-  --chart-3: #6B9B7D;
-  --chart-4: #E8E0D0;
-  --chart-5: #A8C5A0;
-  --sidebar: #FAFAF5;
-  --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #FDE100;
-  --sidebar-primary-foreground: #0D0D0D;
-  --sidebar-accent: #F0EDE5;
-  --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #E5E0D5;
-  --sidebar-ring: #4A7C59;
+  --border: #DDD5CC;
+  --input: #DDD5CC;
+  --ring: #9CAF96;
+  --chart-1: #C4A6A6;
+  --chart-2: #9CAF96;
+  --chart-3: #A3B5C7;
+  --chart-4: #CFC3B7;
+  --chart-5: #B8A9C9;
+  --sidebar: #F5F1ED;
+  --sidebar-foreground: #4A4340;
+  --sidebar-primary: #C4A6A6;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #EDE7E0;
+  --sidebar-accent-foreground: #4A4340;
+  --sidebar-border: #DDD5CC;
+  --sidebar-ring: #9CAF96;
 }
 
 .dark {
-  --background: #0D0D0D;
-  --foreground: #F5F0E8;
-  --card: #1A1A1A;
-  --card-foreground: #F5F0E8;
-  --popover: #1A1A1A;
-  --popover-foreground: #F5F0E8;
-  --primary: #FDE100;
-  --primary-foreground: #0D0D0D;
-  --secondary: #2A2A2A;
-  --secondary-foreground: #F5F0E8;
-  --muted: #2A2A2A;
-  --muted-foreground: #9CA3AF;
-  --accent: #6B9B7D;
-  --accent-foreground: #0D0D0D;
+  --background: #2C2825;
+  --foreground: #EDE7E0;
+  --card: #3A3530;
+  --card-foreground: #EDE7E0;
+  --popover: #3A3530;
+  --popover-foreground: #EDE7E0;
+  --primary: #C4A6A6;
+  --primary-foreground: #2C2825;
+  --secondary: #4A443E;
+  --secondary-foreground: #EDE7E0;
+  --muted: #4A443E;
+  --muted-foreground: #9A938B;
+  --accent: #9CAF96;
+  --accent-foreground: #2C2825;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #6B9B7D;
-  --chart-1: #FDE100;
-  --chart-2: #4A7C59;
-  --chart-3: #6B9B7D;
-  --chart-4: #E8E0D0;
-  --chart-5: #A8C5A0;
-  --sidebar: #1A1A1A;
-  --sidebar-foreground: #F5F0E8;
-  --sidebar-primary: #FDE100;
-  --sidebar-primary-foreground: #0D0D0D;
-  --sidebar-accent: #2A2A2A;
-  --sidebar-accent-foreground: #F5F0E8;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #6B9B7D;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #9CAF96;
+  --chart-1: #C4A6A6;
+  --chart-2: #9CAF96;
+  --chart-3: #A3B5C7;
+  --chart-4: #CFC3B7;
+  --chart-5: #B8A9C9;
+  --sidebar: #3A3530;
+  --sidebar-foreground: #EDE7E0;
+  --sidebar-primary: #C4A6A6;
+  --sidebar-primary-foreground: #2C2825;
+  --sidebar-accent: #4A443E;
+  --sidebar-accent-foreground: #EDE7E0;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #9CAF96;
 }
 
 @layer base {
@@ -152,22 +161,13 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #A8C5A0;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #4A7C59;
-}
+/* Custom scrollbar — Morandi style */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #C4A6A6; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #9CAF96; }
 
-/* Module card base — the core Dribbble-style building block */
+/* Module card — core building block */
 .mod-card {
   border-radius: 1.25rem;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -181,29 +181,27 @@ html {
   border-radius: inherit;
   opacity: 0;
   transition: opacity 0.35s;
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(253,225,0,0.08), transparent 60%);
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(196,166,166,0.1), transparent 60%);
   pointer-events: none;
 }
-.mod-card:hover::before {
-  opacity: 1;
-}
+.mod-card:hover::before { opacity: 1; }
 .mod-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px -8px rgba(253,225,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 12px 32px -8px rgba(196,166,166,0.15), 0 4px 12px rgba(0,0,0,0.04);
 }
 
-/* Dortmund diagonal stripe pattern */
+/* Dortmund stripe pattern — Morandi tinted */
 .dortmund-stripe {
   background: repeating-linear-gradient(
     -45deg,
     transparent,
     transparent 10px,
-    rgba(253, 225, 0, 0.04) 10px,
-    rgba(253, 225, 0, 0.04) 20px
+    rgba(196, 166, 166, 0.04) 10px,
+    rgba(196, 166, 166, 0.04) 20px
   );
 }
 
-/* Pill tag style */
+/* Pill tag */
 .pill {
   display: inline-flex;
   align-items: center;
@@ -214,9 +212,7 @@ html {
   font-weight: 500;
   transition: all 0.2s;
 }
-.pill:hover {
-  transform: scale(1.05);
-}
+.pill:hover { transform: scale(1.05); }
 
 /* Icon badge */
 .icon-badge {
@@ -230,27 +226,14 @@ html {
   transition: all 0.3s;
 }
 
-/* Horizontal scroll container */
+/* Horizontal scroll */
 .horizontal-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #A8C5A0 transparent;
+  scrollbar-color: #C4A6A6 transparent;
 }
-.horizontal-scroll::-webkit-scrollbar {
-  height: 4px;
-}
-.horizontal-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-.horizontal-scroll::-webkit-scrollbar-thumb {
-  background: #A8C5A0;
-  border-radius: 2px;
-}
-
-/* Animated expand/collapse */
-.expand-content {
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
-}
+.horizontal-scroll::-webkit-scrollbar { height: 4px; }
+.horizontal-scroll::-webkit-scrollbar-track { background: transparent; }
+.horizontal-scroll::-webkit-scrollbar-thumb { background: #C4A6A6; border-radius: 2px; }
 
 /* Bounce on click */
 @keyframes bounce-click {
@@ -258,20 +241,16 @@ html {
   50% { transform: scale(0.96); }
   100% { transform: scale(1); }
 }
-.bounce-click:active {
-  animation: bounce-click 0.2s ease;
-}
+.bounce-click:active { animation: bounce-click 0.2s ease; }
 
-/* Yellow glow pulse */
+/* Soft glow pulse — Morandi rose */
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(253,225,0,0.3); }
-  50% { box-shadow: 0 0 20px 4px rgba(253,225,0,0.15); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196,166,166,0.2); }
+  50% { box-shadow: 0 0 20px 4px rgba(196,166,166,0.1); }
 }
-.glow-pulse {
-  animation: glow-pulse 2.5s ease-in-out infinite;
-}
+.glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
 
-/* Stagger animation helper */
+/* Stagger animation */
 .stagger > * {
   opacity: 0;
   animation: stagger-in 0.5s ease forwards;

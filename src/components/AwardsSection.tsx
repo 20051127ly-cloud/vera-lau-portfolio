@@ -1,38 +1,46 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, Star, Trophy } from 'lucide-react';
+import { Trophy, Star, BookOpen, Languages, Award } from 'lucide-react';
 
-const AWARDS = [
-  {
-    title: '中山大学优秀学生奖学金',
-    period: '2023-24 / 2024-25学年',
-    icon: '🏅',
-    type: 'scholarship' as const,
-  },
-  {
-    title: '中山大学优秀学生干部',
-    period: '2024-25学年',
-    icon: '🎖️',
-    type: 'honor' as const,
-  },
+interface AwardItem {
+  icon: React.ReactNode;
+  text: string;
+  color: string;
+}
+
+const SCHOLARSHIP_AWARDS: AwardItem[] = [
+  { icon: <Award className="w-3.5 h-3.5" />, text: '2023-2024学年中山大学优秀学生奖学金（三等奖）', color: 'bg-morandi-rose/10 text-morandi-rose border-morandi-rose/20' },
+  { icon: <Award className="w-3.5 h-3.5" />, text: '2024-2025学年中山大学优秀学生奖学金（三等奖）', color: 'bg-morandi-rose/10 text-morandi-rose border-morandi-rose/20' },
+  { icon: <Star className="w-3.5 h-3.5" />, text: '2023-2024学年中山大学专项奖学金笃行骨干奖', color: 'bg-morandi-sage/10 text-morandi-sage border-morandi-sage/20' },
+  { icon: <Star className="w-3.5 h-3.5" />, text: '2025年中山大学优秀学生社团骨干', color: 'bg-morandi-sage/10 text-morandi-sage border-morandi-sage/20' },
+  { icon: <Star className="w-3.5 h-3.5" />, text: '2024年中山大学勤工助学先进个人', color: 'bg-morandi-sage/10 text-morandi-sage border-morandi-sage/20' },
+];
+
+const ACADEMIC_AWARDS: AwardItem[] = [
+  { icon: <BookOpen className="w-3.5 h-3.5" />, text: '南京大学文学院520本硕博联动本科生学术论文报告会获奖', color: 'bg-morandi-blue/10 text-morandi-blue border-morandi-blue/20' },
+  { icon: <BookOpen className="w-3.5 h-3.5" />, text: '第四届社科法学书评、影评与翻译大赛获奖（《"永恒的挑衅"：论福柯的权力与战争》）', color: 'bg-morandi-blue/10 text-morandi-blue border-morandi-blue/20' },
+];
+
+const LANGUAGE_SCORES = [
+  { label: 'CET-4', score: '614', color: 'from-morandi-sage to-morandi-rose' },
+  { label: 'CET-6', score: '605', color: 'from-morandi-rose to-morandi-lavender' },
 ];
 
 const container = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.06 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20, scale: 0.95 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: 'easeOut' as const } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 };
 
 export default function AwardsSection() {
   return (
     <section id="awards" className="py-16 sm:py-24 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,59 +49,82 @@ export default function AwardsSection() {
           className="mb-10"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="icon-badge bg-bvb-yellow/15">
-              <Trophy className="w-4 h-4 text-bvb-black" />
+            <div className="icon-badge bg-morandi-amber/15">
+              <Trophy className="w-4 h-4 text-morandi-amber" />
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold">荣誉 & 奖项</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold">奖项荣誉</h2>
           </div>
         </motion.div>
 
-        {/* Awards grid */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 ml-12"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-5 ml-12"
         >
-          {AWARDS.map((award) => (
-            <motion.div
-              key={award.title}
-              variants={item}
-              whileHover={{ scale: 1.03, rotate: -0.5 }}
-              whileTap={{ scale: 0.97 }}
-              className="mod-card bg-gradient-to-br from-bvb-yellow/10 to-bvb-yellow/5 border border-bvb-yellow/25 p-5 cursor-default"
-            >
-              <div className="flex items-center gap-3">
-                <div className="text-3xl">{award.icon}</div>
-                <div>
-                  <h3 className="font-semibold text-sm text-foreground">{award.title}</h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">{award.period}</p>
-                </div>
+          {/* Scholarship Awards */}
+          <motion.div variants={item}>
+            <div className="mod-card bg-card border border-border/50 p-5 h-full">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="icon-badge bg-morandi-rose/12"><span className="text-lg">🏅</span></div>
+                <h3 className="font-semibold text-sm">奖学金 & 荣誉</h3>
               </div>
-            </motion.div>
-          ))}
+              <div className="space-y-2">
+                {SCHOLARSHIP_AWARDS.map((award, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    className={`flex items-center gap-2.5 p-2.5 rounded-lg border ${award.color} transition-colors`}
+                  >
+                    {award.icon}
+                    <span className="text-xs leading-snug">{award.text}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
 
-          {/* CET scores as mini cards */}
-          <motion.div
-            variants={item}
-            whileHover={{ scale: 1.03 }}
-            className="mod-card bg-card border border-border/50 p-5 cursor-default"
-          >
-            <div className="flex items-center gap-3">
-              <div className="icon-badge bg-nature-green/10">
-                <Star className="w-4 h-4 text-nature-green" />
+          {/* Academic Awards + English */}
+          <motion.div variants={item} className="space-y-5">
+            <div className="mod-card bg-card border border-border/50 p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="icon-badge bg-morandi-blue/12"><span className="text-lg">📝</span></div>
+                <h3 className="font-semibold text-sm">学术获奖</h3>
               </div>
-              <div>
-                <h3 className="font-semibold text-sm">英语水平</h3>
-                <div className="flex gap-3 mt-1">
-                  <span className="pill bg-bvb-yellow/10 text-bvb-black border border-bvb-yellow/20">
-                    CET-4 <strong>625</strong>
-                  </span>
-                  <span className="pill bg-nature-green/10 text-nature-green border border-nature-green/20">
-                    CET-6 <strong>605</strong>
-                  </span>
-                </div>
+              <div className="space-y-2">
+                {ACADEMIC_AWARDS.map((award, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    className={`flex items-center gap-2.5 p-2.5 rounded-lg border ${award.color} transition-colors`}
+                  >
+                    {award.icon}
+                    <span className="text-xs leading-snug">{award.text}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* English Scores */}
+            <div className="mod-card bg-card border border-border/50 p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="icon-badge bg-morandi-sage/12"><Languages className="w-4 h-4 text-morandi-sage" /></div>
+                <h3 className="font-semibold text-sm">英语成绩</h3>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {LANGUAGE_SCORES.map((lang) => (
+                  <div key={lang.label} className="text-center p-3 rounded-xl bg-muted/50">
+                    <div className="text-lg font-bold bg-gradient-to-r bg-clip-text text-transparent" style={{ backgroundImage: `var(--tw-gradient-stops)` }}>
+                      <span className={`bg-gradient-to-r ${lang.color} bg-clip-text text-transparent`}>{lang.score}</span>
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{lang.label}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                <span className="pill bg-morandi-sage/8 text-morandi-sage border border-morandi-sage/15">普通话（二甲）</span>
+                <span className="pill bg-morandi-rose/8 text-morandi-rose border border-morandi-rose/15">粤语（母语）</span>
               </div>
             </div>
           </motion.div>
