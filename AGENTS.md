@@ -7,6 +7,11 @@
 - **Language**: TypeScript 5
 - **UI 组件**: shadcn/ui (基于 Radix UI)
 - **Styling**: Tailwind CSS 4
+- **Animation**: Framer Motion 12
+
+### 项目简介
+
+个人主页网站，风格清新自然，以多特蒙德球场（Signal Iduna Park）为设计灵感。采用黄黑配色与自然绿色调结合，支持暗色模式。
 
 ## 目录结构
 
@@ -19,7 +24,18 @@
 │   └── start.sh            # 生产环境启动脚本
 ├── src/
 │   ├── app/                # 页面路由与布局
-│   ├── components/ui/      # Shadcn UI 组件库
+│   │   ├── globals.css     # 全局样式（含 Dortmund 色系主题变量）
+│   │   ├── layout.tsx      # 根布局
+│   │   └── page.tsx        # 首页（组合所有 Section 组件）
+│   ├── components/         # 业务组件
+│   │   ├── Navigation.tsx  # 顶部导航栏（sticky, 动画高亮）
+│   │   ├── HeroSection.tsx # Hero 全屏区域（个人简介、CTA）
+│   │   ├── AboutSection.tsx# 关于我（头像、简介、标签）
+│   │   ├── ExperienceSection.tsx # 经历模块（教育/实习/学术 Tab 切换+展开详情）
+│   │   ├── PublicationsSection.tsx # 学术作品（分类筛选+展开摘要）
+│   │   ├── SocialSection.tsx # 社交媒体（平台卡片网格）
+│   │   ├── Footer.tsx      # 页脚
+│   │   └── ui/             # Shadcn UI 组件库
 │   ├── hooks/              # 自定义 Hooks
 │   ├── lib/                # 工具库
 │   │   └── utils.ts        # 通用工具函数 (cn)
@@ -29,7 +45,28 @@
 └── tsconfig.json           # TypeScript 配置
 ```
 
-- 项目文件（如 app 目录、pages 目录、components 等）默认初始化到 `src/` 目录下。
+- 项目文件默认初始化到 `src/` 目录下。
+
+## 核心功能模块
+
+| 模块 | 文件 | 功能 |
+|------|------|------|
+| 导航 | `Navigation.tsx` | Sticky 顶部导航，滚动高亮，移动端汉堡菜单，Framer Motion 动画 |
+| Hero | `HeroSection.tsx` | 全屏个人介绍，背景动画光晕，CTA 按钮 |
+| 关于我 | `AboutSection.tsx` | 左右布局：头像+快速信息 / 个人简介+研究标签 |
+| 经历 | `ExperienceSection.tsx` | 三类 Tab 切换（教育/实习/学术），点击展开详情 |
+| 学术作品 | `PublicationsSection.tsx` | 类型筛选（全部/会议/期刊/预印本），高亮代表作，展开摘要 |
+| 社交媒体 | `SocialSection.tsx` | 平台卡片网格（GitHub/Scholar/Twitter/知乎/LinkedIn/ORCID） |
+| 页脚 | `Footer.tsx` | 快捷链接 + Dortmund 主题引用 |
+
+## 设计主题
+
+- **主色**: Dortmund 黄 (#FDE100) + 自然绿 (#4A7C59)
+- **辅色**: 叶绿 (#6B9B7D) / 鼠尾草 (#A8C5A0) / 暖沙 (#E8E0D0)
+- **背景**: 暖白 (#FAFAF5) / 暖调 (#F5F0E8)
+- **暗色模式**: 深黑 (#0D0D0D) + 深灰 (#1A1A1A)
+- **动画**: Framer Motion (滚动入场、Tab 切换、卡片悬浮、背景光晕)
+- **Dortmund 元素**: 45度斜条纹纹理、黄色高亮、Echte Liebe 引用
 
 ## 包管理规范
 
@@ -63,3 +100,10 @@
 
 - 模板默认预装核心组件库 `shadcn/ui`，位于`src/components/ui/`目录下
 - Next.js 项目**必须默认**采用 shadcn/ui 组件、风格和规范，**除非用户指定用其他的组件和规范。**
+
+## 构建与测试命令
+
+- 静态检查：`pnpm ts-check` + `pnpm lint:build`
+- 开发：`pnpm dev`（端口 5000）
+- 构建：`pnpm build`
+- 生产启动：`pnpm start`
