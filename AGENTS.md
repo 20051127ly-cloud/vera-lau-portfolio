@@ -2,67 +2,76 @@
 
 ### 版本技术栈
 
-- **Framework**: Next.js 16 (App Router)
+- **Framework**: Next.js 16 (App Router, Turbopack)
 - **Core**: React 19
 - **Language**: TypeScript 5
-- **UI 组件**: shadcn/ui (基于 Radix UI)
-- **Styling**: Tailwind CSS 4
-- **Animation**: Framer Motion 12
+- **Styling**: Tailwind CSS 4（未使用 shadcn/ui，卡片为自绘样式）
+- **Animation**: Framer Motion 12（LazyMotion + `m`，仅用于交互）
+- **Theme**: next-themes（亮 / 暗，`.dark` 变量在 `globals.css`）
 
 ### 项目简介
 
-个人简历主页，参考 Dribbble 模块化插画风格设计，以多特蒙德球场（Signal Iduna Park）为灵感。采用黄黑配色与自然绿色调结合。所有模块以圆角卡片拼接，点击触发展开/收起动画。
+个人简历 + 作品集主页。莫兰迪低饱和色系，模块化圆角卡片拼接（Bento Grid），
+时间线卡片点击展开详情，附带多特蒙德 Signal Iduna Park 的 45° 斜条纹元素与 "Echte Liebe" 引用。
 
 ## 目录结构
 
 ```
 ├── public/
-│   └── avatar.jpeg        # 个人头像
-├── scripts/                # 构建与启动脚本
+│   └── avatar.jpeg          # 头像（288×288）
+├── scripts/                 # 构建与启动脚本
 ├── src/
-│   ├── app/                # 页面路由与布局
-│   │   ├── globals.css     # 全局样式（Dortmund 色系 + mod-card 模块化样式）
-│   │   ├── layout.tsx      # 根布局
-│   │   └── page.tsx        # 首页（组合所有 Section 组件）
-│   ├── components/         # 业务组件
-│   │   ├── Navigation.tsx  # 顶部导航栏（pill 风格，sticky，emoji 标识）
-│   │   ├── HeroSection.tsx # Hero 个人信息区（头像卡+标题卡+统计卡+语言卡+技能卡）
-│   │   ├── ExperienceSection.tsx # 实习/教育经历（筛选+点击展开详情）
-│   │   ├── CampusSection.tsx # 校园经历 & 科研项目（Tab 切换+展开详情）
-│   │   ├── AwardsSection.tsx # 奖项荣誉（渐变卡片+英语成绩）
-│   │   ├── SkillsSection.tsx # 技能工具（分类卡片+pill 标签）
-│   │   ├── SocialSection.tsx # 社交联系（平台卡片+邮箱CTA）
-│   │   ├── Footer.tsx      # 页脚
-│   │   └── ui/             # Shadcn UI 组件库
-│   ├── hooks/              # 自定义 Hooks
-│   └── lib/                # 工具库
+│   ├── app/
+│   │   ├── layout.tsx       # metadata / viewport / Provider / skip link
+│   │   ├── page.tsx         # 首页 + Person JSON-LD
+│   │   ├── globals.css      # 色板 + mod-card/pill/icon-badge + 打印 + reduced-motion
+│   │   ├── opengraph-image.tsx
+│   │   ├── sitemap.ts / robots.ts
+│   │   └── not-found.tsx / error.tsx
+│   ├── components/          # 业务组件（默认服务端组件）
+│   ├── data/                # 简历内容单一数据源
+│   ├── lib/tone.ts          # 颜色主题映射
+│   ├── types/resume.ts      # 数据类型
+│   └── server.ts            # coze 平台自定义服务器入口
 ```
 
 ## 核心功能模块
 
-| 模块 | 文件 | 功能 |
+| 模块 | 文件 | 说明 |
 |------|------|------|
-| 导航 | `Navigation.tsx` | Sticky 导航，pill 风格切换，emoji 标识，移动端 3 列图标菜单 |
-| Hero | `HeroSection.tsx` | 头像卡+标题黄卡+统计行+语言能力+核心竞争力，Bento Grid 布局 |
-| 经历 | `ExperienceSection.tsx` | 实习/教育筛选，卡片左侧色条，点击展开详情动画 |
-| 校园 | `CampusSection.tsx` | 校园/科研 Tab 切换，同卡片展开交互 |
-| 荣誉 | `AwardsSection.tsx` | 渐变卡片 hover 旋转，CET 成绩 pill |
-| 技能 | `SkillsSection.tsx` | 三类分组卡片，pill 横滑，hover 右移 |
-| 社交 | `SocialSection.tsx` | 平台卡片 hover 变色，邮箱 CTA 宽卡 |
-| 页脚 | `Footer.tsx` | 黑底黄字，Dortmund 引用 |
+| 导航 | `Navigation.tsx` | 固定导航，IntersectionObserver 高亮，桌面 pill / 移动端折叠 |
+| Hero | `HeroSection.tsx` | 头像卡 + 标题卡 + 统计 + 语言能力 + 核心竞争力 + Motto |
+| 学术 | `AcademicSection.tsx` | GPA + 核心课程（可展开更多）+ 时间线卡片 |
+| 实习 | `ExperienceSection.tsx` | 时间线卡片，左侧色条 |
+| 校园 | `CampusSection.tsx` | 校园经历 / 个人项目 Tab 切换 |
+| 作品 | `WorksSection.tsx` | 作品集三栏，仅有真实外链的条目可点击 |
+| 荣誉 | `AwardsSection.tsx` | 奖学金 / 学术获奖 / 英语成绩 |
+| 技能 | `SkillsSection.tsx` | 三组分类卡片 |
+| 社交 | `SocialSection.tsx` | 平台卡片 + 导出 PDF + 邮箱 CTA |
+| 页脚 | `Footer.tsx` | 原生锚点快捷导航 |
 
 ## 设计主题
 
-- **主色**: Dortmund 黄 (#FDE100) + 自然绿 (#4A7C59)
-- **辅色**: 叶绿 (#6B9B7D) / 鼠尾草 (#A8C5A0) / 暖沙 (#E8E0D0)
-- **背景**: 暖白 (#FAFAF5) / 暖调 (#F5F0E8)
-- **动画**: Framer Motion (stagger 入场、点击弹跳 bounce-click、卡片悬浮、进度条动画)
-- **交互**: mod-card 模块化卡片 + pill 标签 + icon-badge 图标角标
-- **Dortmund 元素**: 45度斜条纹纹理、黄色高亮、Echte Liebe 引用
+- **主色**: 莫兰迪玫瑰 `#C4A6A6`
+- **辅色**: 驼棕 `#9B7E5E` / 雾蓝 `#A3B5C7` / 薰衣草 `#B8A9C9` / 鼠尾草 `#9CAF96` / 暖沙 `#CFC3B7`
+- **背景**: 奶油 `#F5F1ED` / 深奶油 `#EDE6DD`
+- **文字**: 炭褐 `#4A4340`（正文）/ `#6E6760`（次要，满足 WCAG AA）
+- **动画**: CSS `.rise` 入场 + Framer Motion 处理展开 / Tab / 导航 pill；全局尊重 `prefers-reduced-motion`
+- **交互**: `mod-card` 卡片 + `pill` 标签 + `icon-badge` 图标角标
+- **Dortmund 元素**: `.dortmund-stripe` 斜条纹纹理、"Echte Liebe" 引用
+
+## 开发约定
+
+1. 内容一律写在 `src/data/`，组件不硬编码文案；`navigation.ts` 同时驱动导航与页脚。
+2. 默认写服务端组件，只有需要 state / 浏览器 API 时才加 `'use client'`。
+3. 新增颜色主题请扩展 `src/lib/tone.ts`，不要散落类名字符串。
+4. 手机号只允许通过 `MaskedPhone` 渲染，禁止明文出现。
+5. 不使用远程图片，`next.config.ts` 不配置 `remotePatterns`。
+6. 折叠详情需保留在 DOM 中（`data-collapsible`），以便打印时自动展开。
 
 ## 构建与测试命令
 
-- 静态检查：`pnpm ts-check` + `pnpm lint:build`
+- 静态检查：`pnpm ts-check` + `pnpm lint:build`（合起来 `pnpm validate`）
 - 开发：`pnpm dev`（端口 5000）
 - 构建：`pnpm build`
 - 生产启动：`pnpm start`

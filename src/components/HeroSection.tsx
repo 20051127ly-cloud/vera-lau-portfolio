@@ -1,289 +1,220 @@
-"use client";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { MapPin, School, Sparkles, Phone, Mail } from "lucide-react";
+import Image from 'next/image';
+import { MapPin, School, Sparkles, Mail, ArrowDown } from 'lucide-react';
+import { CORE_STRENGTHS, EDUCATION, LANGUAGES, PROFILE, STATS } from '@/data/profile';
+import { STAT_TONE } from '@/lib/tone';
+import MaskedPhone from '@/components/MaskedPhone';
 
-const container = {
-    hidden: {
-        opacity: 0
-    },
-
-    show: {
-        opacity: 1,
-
-        transition: {
-            staggerChildren: 0.08
-        }
-    }
-};
-
-const item = {
-    hidden: {
-        opacity: 0,
-        y: 20
-    },
-
-    show: {
-        opacity: 1,
-        y: 0,
-
-        transition: {
-            duration: 0.5,
-            ease: "easeOut" as const
-        }
-    }
-};
-
+/**
+ * Hero：Bento Grid 概览。
+ * 改为服务端组件，入场与循环光晕全部用 CSS 动画实现（不依赖 JS），
+ * 首屏更快且 JS 失效时内容依然完整可见。
+ */
 export default function HeroSection() {
-    return (
-        <section
-            id="profile"
-            className="min-h-screen flex items-center pt-20 pb-12 relative">
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute inset-0 dortmund-stripe" />
-                <motion.div
-                    animate={{
-                        scale: [1, 1.15, 1],
-                        opacity: [0.12, 0.2, 0.12]
-                    }}
-                    transition={{
-                        duration: 5,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                    className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-morandi-rose/10 blur-3xl" />
-                <motion.div
-                    animate={{
-                        scale: [1, 1.1, 1],
-                        opacity: [0.1, 0.18, 0.1]
-                    }}
-                    transition={{
-                        duration: 6,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 1.5
-                    }}
-                    className="absolute bottom-20 -left-20 w-64 h-64 rounded-full bg-morandi-accent/12 blur-3xl" />
+  return (
+    <section id="profile" className="min-h-screen flex items-center pt-20 pb-12 relative scroll-mt-20">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
+        <div className="absolute inset-0 dortmund-stripe" />
+        <div className="float-glow-a absolute -top-20 -right-20 w-80 h-80 rounded-full bg-morandi-rose/10 blur-3xl" />
+        <div className="float-glow-b absolute bottom-20 -left-20 w-64 h-64 rounded-full bg-morandi-accent/12 blur-3xl" />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          {/* 头像 + 基本信息 */}
+          <div className="rise lg:col-span-4 lg:row-span-2" style={{ animationDelay: '0ms' }}>
+            <div className="mod-card bg-card border border-border/50 p-6 h-full flex flex-col items-center justify-center text-center glow-pulse">
+              <div className="w-36 h-36 rounded-2xl overflow-hidden border-4 border-morandi-rose/30 shadow-lg shadow-morandi-rose/10 mb-5">
+                <Image
+                  src="/avatar.jpeg"
+                  alt={`${PROFILE.name} 的头像`}
+                  width={144}
+                  height={144}
+                  sizes="144px"
+                  quality={82}
+                  priority
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h1 className="font-serif text-2xl font-bold text-foreground">{PROFILE.name}</h1>
+              <p className="text-sm text-morandi-accent font-medium mt-1">{PROFILE.school}</p>
+
+              <div className="flex flex-wrap justify-center gap-2 mt-4">
+                <span className="pill bg-morandi-rose/15 text-morandi-rose border border-morandi-rose/25">
+                  <MapPin className="w-3 h-3" aria-hidden />
+                  {PROFILE.location}
+                </span>
+                <span className="pill bg-morandi-accent/12 text-morandi-accent border border-morandi-accent/25">
+                  <School className="w-3 h-3" aria-hidden />
+                  {PROFILE.grade}
+                </span>
+              </div>
+
+              <p className="text-xs text-muted-foreground mt-4 leading-relaxed max-w-[240px]">
+                {PROFILE.intro}
+              </p>
+
+              <div className="mt-4 space-y-2 w-full">
+                <a
+                  href={`mailto:${PROFILE.email}`}
+                  className="flex items-center gap-2 text-xs text-morandi-accent hover:text-morandi-rose transition-colors justify-center"
+                >
+                  <Mail className="w-3.5 h-3.5" aria-hidden />
+                  {PROFILE.email}
+                </a>
+                <MaskedPhone />
+              </div>
             </div>
-            <div className="relative max-w-6xl mx-auto px-4 sm:px-6 w-full">
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    animate="show"
-                    className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                    {}
-                    <motion.div variants={item} className="lg:col-span-4 lg:row-span-2">
-                        <div
-                            className="mod-card bg-card border border-border/50 p-6 h-full flex flex-col items-center justify-center text-center glow-pulse">
-                            <div
-                                className="w-36 h-36 rounded-2xl overflow-hidden border-4 border-morandi-rose/30 shadow-lg shadow-morandi-rose/10 mb-5">
-                                <Image
-                                    src="/avatar.jpeg"
-                                    alt="Vera LAU"
-                                    width={144}
-                                    height={144}
-                                    className="w-full h-full object-cover"
-                                    priority />
-                            </div>
-                            <h1 className="font-serif text-2xl font-bold text-foreground">Vera LAU</h1>
-                            <p className="text-sm text-morandi-accent font-medium mt-1">中山大学 · 博雅学院</p>
-                            <div className="flex flex-wrap justify-center gap-2 mt-4">
-                                <span
-                                    className="pill bg-morandi-rose/15 text-morandi-rose border border-morandi-rose/25">
-                                    <MapPin className="w-3 h-3" />广州
-                                                    </span>
-                                <span
-                                    className="pill bg-morandi-accent/12 text-morandi-accent border border-morandi-accent/25">
-                                    <School className="w-3 h-3" />2023级
-                                                    </span>
-                            </div>
-                            <p
-                                className="text-xs text-muted-foreground mt-4 leading-relaxed max-w-[240px]">汉语言文学（博雅），热爱古典学与人文研究，擅长内容策划与文化传播。
-                                              </p>
-                            {}
-                            <div className="mt-4 space-y-2 w-full">
-                                <a
-                                    href="mailto:2419503690@qq.com"
-                                    className="flex items-center gap-2 text-xs text-morandi-accent hover:text-morandi-rose transition-colors justify-center">
-                                    <Mail className="w-3.5 h-3.5" />2419503690@qq.com
-                                                    </a>
-                                <a
-                                    href="tel:13694288875"
-                                    className="flex items-center gap-2 text-xs text-morandi-accent hover:text-morandi-rose transition-colors justify-center">
-                                    <Phone className="w-3.5 h-3.5" />13694288875
-                                                    </a>
-                            </div>
-                        </div>
-                    </motion.div>
-                    <motion.div variants={item} className="lg:col-span-8">
-                        <div
-                            className="mod-card bg-morandi-rose border border-morandi-rose/30 p-6 sm:p-8 h-full flex flex-col justify-center">
-                            <div className="flex items-start justify-between">
-                                <div>
-                                    <motion.div
-                                        initial={{
-                                            width: 0
-                                        }}
-                                        animate={{
-                                            width: 48
-                                        }}
-                                        transition={{
-                                            duration: 0.6,
-                                            delay: 0.4
-                                        }}
-                                        className="h-1 bg-white/25 rounded-full mb-4" />
-                                    <h2
-                                        className="text-3xl sm:text-4xl font-serif font-bold text-white leading-tight">古典学 · 人文研究
-                                                            <br />
-                                        <span className="text-white/70">内容策划 & 品牌传播</span>
-                                    </h2>
-                                </div>
-                                <Sparkles className="w-8 h-8 text-white/20" />
-                            </div>
-                            <p className="text-sm text-white/75 mt-4 leading-relaxed max-w-lg">拥有雇主品牌、新媒体运营与活动策划的实战经验，善于结合热点进行内容创意。
-                                                同时具备扎实的人文学术研究背景，专注于古典文学与跨文化比较，跨领域整合能力强。
-                                              </p>
-                        </div>
-                    </motion.div>
-                    {}
-                    <motion.div variants={item} className="lg:col-span-8">
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                            {[{
-                                value: "4.15",
-                                label: "GPA / 5.00",
-                                color: "bg-morandi-rose/12 text-morandi-rose border-morandi-rose/25"
-                            }, {
-                                value: "2/14",
-                                label: "专业排名",
-                                color: "bg-morandi-accent/12 text-morandi-accent border-morandi-accent/25"
-                            }, {
-                                value: "90+",
-                                label: "推文产出",
-                                color: "bg-morandi-blue/12 text-morandi-blue border-morandi-blue/25"
-                            }, {
-                                value: "3",
-                                label: "段实习经历",
-                                color: "bg-morandi-sand/20 text-morandi-warm border-morandi-sand/30"
-                            }].map(stat => <div
-                                key={stat.label}
-                                className={`mod-card p-4 text-center border ${stat.color}`}>
-                                <div className="text-xl font-bold">{stat.value}</div>
-                                <div className="text-xs mt-0.5 opacity-70">{stat.label}</div>
-                            </div>)}
-                        </div>
-                    </motion.div>
-                    {}
-                    <motion.div variants={item} className="lg:col-span-4 lg:row-span-2">
-                        <div className="mod-card bg-card border border-border/50 p-5 h-full">
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="icon-badge bg-morandi-accent/12"><span className="text-lg">🌐</span></div>
-                                <h3 className="font-semibold text-sm">语言能力</h3>
-                            </div>
-                            <div className="space-y-3">
-                                {[{
-                                    lang: "粤语",
-                                    level: "母语",
-                                    pct: 100
-                                }, {
-                                    lang: "普通话",
-                                    level: "二甲",
-                                    pct: 100
-                                }, {
-                                    lang: "英语",
-                                    level: "CET-6 605",
-                                    pct: 85
-                                }, {
-                                    lang: "拉丁语",
-                                    level: "可阅读",
-                                    pct: 55
-                                }].map(l => <div key={l.lang}>
-                                    <div className="flex justify-between text-xs mb-1">
-                                        <span className="font-medium">{l.lang}</span>
-                                        <span className="text-muted-foreground">{l.level}</span>
-                                    </div>
-                                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                                        <motion.div
-                                            initial={{
-                                                width: 0
-                                            }}
-                                            whileInView={{
-                                                width: `${l.pct}%`
-                                            }}
-                                            viewport={{
-                                                once: true
-                                            }}
-                                            transition={{
-                                                duration: 0.8,
-                                                delay: 0.3,
-                                                ease: "easeOut"
-                                            }}
-                                            className="h-full rounded-full bg-gradient-to-r from-morandi-accent to-morandi-rose" />
-                                    </div>
-                                </div>)}
-                            </div>
-                            <div className="mt-5 pt-4 border-t border-border/50">
-                                <div className="flex items-center gap-2 mb-3">
-                                    <div className="icon-badge bg-morandi-rose/12"><span className="text-lg">🎓</span></div>
-                                    <h3 className="font-semibold text-sm">教育</h3>
-                                </div>
-                                <div className="space-y-2">
-                                    <div className="p-2.5 rounded-lg bg-muted/50">
-                                        <p className="text-xs font-medium">中山大学 · 博雅学院</p>
-                                        <p className="text-xs text-muted-foreground">汉语言文学（博雅）· 2023-2027</p>
-                                    </div>
-                                    <div
-                                        className="p-2.5 rounded-lg bg-morandi-blue/8 border border-morandi-blue/15">
-                                        <p className="text-xs font-medium text-morandi-blue">剑桥大学 · 克莱尔学院</p>
-                                        <p className="text-xs text-muted-foreground">古典学暑期课程 · 2025.08</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                    {}
-                    <motion.div variants={item} className="lg:col-span-7">
-                        <div className="mod-card bg-card border border-border/50 p-5 h-full">
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="icon-badge bg-morandi-amber/15"><span className="text-lg">✨</span></div>
-                                <h3 className="font-semibold text-sm">核心竞争力</h3>
-                            </div>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                                {["内容策划", "社交媒体运营", "品牌传播", "学术研究", "古典学", "跨文化传播"].map(skill => <motion.div
-                                    key={skill}
-                                    whileHover={{
-                                        scale: 1.05
-                                    }}
-                                    whileTap={{
-                                        scale: 0.95
-                                    }}
-                                    className="pill bg-morandi-accent/8 text-morandi-accent border border-morandi-accent/15 cursor-default justify-center py-2">
-                                    {skill}
-                                </motion.div>)}
-                            </div>
-                        </div>
-                    </motion.div>
-                    {}
-                    <motion.div variants={item} className="lg:col-span-5">
-                        <div
-                            className="mod-card bg-gradient-to-br from-morandi-rose/8 via-morandi-accent/6 to-morandi-blue/8 border border-morandi-rose/15 p-5 h-full flex flex-col items-center justify-center text-center"
-                            style={{
-                                backgroundColor: "#FFFFFF"
-                            }}>
-                            <div className="icon-badge bg-morandi-rose/12 mb-3"><span className="text-lg">💛</span></div>
-                            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Motto</p>
-                            <p className="font-serif italic text-lg text-morandi-rose leading-relaxed">Echte Liebe.
-                                              </p>
-                            <p className="font-serif italic text-lg text-morandi-accent leading-relaxed">True Love.
-                                              </p>
-                        </div>
-                    </motion.div>
-                    {}
-                    <motion.div variants={item} className="lg:col-span-12">
-                        <p className="text-center text-xs text-muted-foreground/60 mt-2">💡 点击卡片可展开查看详情
-                                        </p>
-                    </motion.div>
-                </motion.div>
+          </div>
+
+          {/* 主标题 */}
+          <div className="rise lg:col-span-8" style={{ animationDelay: '80ms' }}>
+            <div className="mod-card bg-morandi-rose border border-morandi-rose/30 p-6 sm:p-8 h-full flex flex-col justify-center">
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="h-1 w-12 bg-white/25 rounded-full mb-4" />
+                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white leading-tight">
+                    {PROFILE.headlinePrimary}
+                    <br />
+                    <span className="text-white/80">{PROFILE.headlineSecondary}</span>
+                  </h2>
+                </div>
+                <Sparkles className="w-8 h-8 text-white/25 shrink-0" aria-hidden />
+              </div>
+              <p className="text-sm text-white/85 mt-4 leading-relaxed max-w-lg">{PROFILE.summary}</p>
             </div>
-        </section>
-    );
+          </div>
+
+          {/* 关键数据 */}
+          <div className="rise lg:col-span-8" style={{ animationDelay: '160ms' }}>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {STATS.map((stat) => (
+                <div key={stat.label} className={`mod-card p-4 text-center border ${STAT_TONE[stat.tone]}`}>
+                  <div className="text-xl font-bold">{stat.value}</div>
+                  <div className="text-xs mt-0.5 opacity-80">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 语言能力 + 教育 */}
+          <div className="rise lg:col-span-4 lg:row-span-2" style={{ animationDelay: '240ms' }}>
+            <div className="mod-card bg-card border border-border/50 p-5 h-full">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="icon-badge bg-morandi-accent/12">
+                  <span className="text-lg" aria-hidden>
+                    🌐
+                  </span>
+                </div>
+                <h3 className="font-semibold text-sm">语言能力</h3>
+              </div>
+              <div className="space-y-3">
+                {LANGUAGES.map((l) => (
+                  <div key={l.lang}>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="font-medium">{l.lang}</span>
+                      <span className="text-muted-foreground">{l.level}</span>
+                    </div>
+                    <div
+                      className="h-1.5 bg-muted rounded-full overflow-hidden"
+                      role="progressbar"
+                      aria-label={`${l.lang} 熟练度`}
+                      aria-valuenow={l.pct}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    >
+                      <div
+                        className="bar-fill h-full rounded-full bg-gradient-to-r from-morandi-accent to-morandi-rose"
+                        style={{ '--pct': `${l.pct}%` } as React.CSSProperties}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 pt-4 border-t border-border/50">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="icon-badge bg-morandi-rose/12">
+                    <span className="text-lg" aria-hidden>
+                      🎓
+                    </span>
+                  </div>
+                  <h3 className="font-semibold text-sm">教育</h3>
+                </div>
+                <div className="space-y-2">
+                  {EDUCATION.map((e) => (
+                    <div
+                      key={e.name}
+                      className={`p-2.5 rounded-lg ${
+                        e.tone === 'blue'
+                          ? 'bg-morandi-blue/10 border border-morandi-blue/20'
+                          : 'bg-muted/50'
+                      }`}
+                    >
+                      <p className={`text-xs font-medium ${e.tone === 'blue' ? 'text-morandi-blue' : ''}`}>
+                        {e.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground">{e.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 核心竞争力 */}
+          <div className="rise lg:col-span-7" style={{ animationDelay: '320ms' }}>
+            <div className="mod-card bg-card border border-border/50 p-5 h-full">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="icon-badge bg-morandi-amber/15">
+                  <span className="text-lg" aria-hidden>
+                    ✨
+                  </span>
+                </div>
+                <h3 className="font-semibold text-sm">核心竞争力</h3>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {CORE_STRENGTHS.map((skill) => (
+                  <span
+                    key={skill}
+                    className="pill bg-morandi-accent/8 text-morandi-accent border border-morandi-accent/15 justify-center py-2"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Motto */}
+          <div className="rise lg:col-span-5" style={{ animationDelay: '400ms' }}>
+            <div className="mod-card bg-gradient-to-br from-morandi-rose/12 via-morandi-accent/8 to-morandi-blue/12 border border-morandi-rose/20 p-5 h-full flex flex-col items-center justify-center text-center">
+              <div className="icon-badge bg-morandi-rose/12 mb-3">
+                <span className="text-lg" aria-hidden>
+                  💛
+                </span>
+              </div>
+              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Motto</p>
+              <p className="font-serif italic text-lg text-morandi-rose leading-relaxed">
+                {PROFILE.mottoLatin}
+              </p>
+              <p className="font-serif italic text-lg text-morandi-accent leading-relaxed">
+                {PROFILE.mottoEnglish}
+              </p>
+            </div>
+          </div>
+
+          {/* 滚动提示（Hero 卡片本身不可展开，原「点击卡片展开详情」为误导文案） */}
+          <div className="rise lg:col-span-12" style={{ animationDelay: '480ms' }}>
+            <a
+              href="#academic"
+              className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-morandi-rose transition-colors mt-2"
+            >
+              <ArrowDown className="w-3.5 h-3.5 arrow-nudge" aria-hidden />
+              向下滚动查看完整简历
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,97 +1,60 @@
-'use client';
+import { Code, FileSpreadsheet, Palette, Wrench } from 'lucide-react';
+import { SKILL_GROUPS } from '@/data/skills';
+import { Section, SectionHeader } from '@/components/Section';
+import type { Tone } from '@/types/resume';
 
-import { motion } from 'framer-motion';
-import { Wrench, FileSpreadsheet, Code, Palette } from 'lucide-react';
+const ICONS = {
+  sheet: FileSpreadsheet,
+  code: Code,
+  palette: Palette,
+} as const;
 
-interface SkillGroup {
-  icon: React.ReactNode;
-  title: string;
-  color: string;
-  skills: string[];
-}
-
-const SKILL_GROUPS: SkillGroup[] = [
-  {
-    icon: <FileSpreadsheet className="w-4 h-4" />,
-    title: '办公工具',
-    color: 'border-t-2 border-t-morandi-rose',
-    skills: ['Excel (VLOOKUP、数据透视表)', 'Word', 'PowerPoint'],
-  },
-  {
-    icon: <Code className="w-4 h-4" />,
-    title: '技术工具',
-    color: 'border-t-2 border-t-morandi-accent',
-    skills: ['Python', 'SQL', 'ChatGPT / Deepseek'],
-  },
-  {
-    icon: <Palette className="w-4 h-4" />,
-    title: '设计 & 媒体',
-    color: 'border-t-2 border-t-morandi-blue',
-    skills: ['可画', '剪映', '秀米', '135编辑器', '即梦AI'],
-  },
-];
-
-const container = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
+const TOP_BORDER: Record<Tone, string> = {
+  rose: 'border-t-2 border-t-morandi-rose',
+  accent: 'border-t-2 border-t-morandi-accent',
+  blue: 'border-t-2 border-t-morandi-blue',
+  lavender: 'border-t-2 border-t-morandi-lavender',
 };
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="py-16 sm:py-24 relative bg-morandi-cream-deep/30">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
-          className="mb-10"
-        >
-          <div className="flex items-center gap-3 mb-3">
-            <div className="icon-badge bg-morandi-sand/20">
-              <Wrench className="w-4 h-4 text-morandi-warm" />
-            </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold">技能工具</h2>
-            <p className="text-xs text-muted-foreground/60 mt-1">点击卡片展开详情</p>
-          </div>
-        </motion.div>
+    <Section id="skills" tinted>
+      <SectionHeader
+        icon={<Wrench className="w-4 h-4 text-morandi-warm" />}
+        title="技能工具"
+        badgeClass="bg-morandi-sand/20"
+      />
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-60px' }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-5 ml-12"
-        >
-          {SKILL_GROUPS.map((group) => (
-            <motion.div key={group.title} variants={item}>
-              <div className={`mod-card bg-card border border-border/50 p-5 h-full ${group.color}`}>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="icon-badge bg-muted/80">{group.icon}</div>
-                  <h3 className="font-semibold text-sm">{group.title}</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:ml-12">
+        {SKILL_GROUPS.map((group, gi) => {
+          const Icon = ICONS[group.icon];
+          return (
+            <div
+              key={group.title}
+              className={`rise mod-card bg-card border border-border/50 p-5 h-full ${TOP_BORDER[group.tone]}`}
+              style={{ animationDelay: `${gi * 80}ms` }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <div className="icon-badge bg-muted/80">
+                  <Icon className="w-4 h-4" aria-hidden />
                 </div>
-                <div className="space-y-1.5">
-                  {group.skills.map((skill) => (
-                    <motion.div
-                      key={skill}
-                      whileHover={{ x: 6, backgroundColor: 'rgba(var(--morandi-cream-rgb), 0.5)' }}
-                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/30 text-xs cursor-default transition-colors"
-                    >
-                      <span className="w-1 h-1 rounded-full bg-morandi-accent shrink-0" />
-                      {skill}
-                    </motion.div>
-                  ))}
-                </div>
+                <h3 className="font-semibold text-sm">{group.title}</h3>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              <ul className="space-y-1.5">
+                {group.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/30 text-xs transition-colors hover:bg-muted/60"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-morandi-accent shrink-0" aria-hidden />
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
-    </section>
+    </Section>
   );
 }
